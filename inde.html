@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>T01-Thư Viện Ảo</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+      }
+      .navbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: #1f1f1f;
+        padding: 10px 20px;
+        color: white;
+      }
+      .navbar .logo img {
+        height: 40px;
+      }
+      .navbar .menu {
+        display: flex;
+        gap: 20px;
+      }
+      .navbar .menu a {
+        color: white;
+        text-decoration: none;
+        font-size: 16px;
+        text-transform: uppercase;
+      }
+      .navbar .menu a:hover {
+        text-decoration: underline;
+      }
+      .navbar .right-section {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+      .navbar .right-section img {
+        height: 20px;
+        cursor: pointer;
+      }
+      .navbar .right-section .auth {
+        font-size: 14px;
+      }
+      .navbar .right-section .auth a {
+        color: white;
+        text-decoration: none;
+        margin-left: 5px;
+      }
+      .navbar .right-section .auth a:hover {
+        text-decoration: underline;
+      }
+      nav .search-container {
+        position: absolute;
+        right: 20px;
+      }
+      nav .search-container input {
+        padding: 5px;
+        font-size: 16px;
+        border: none;
+        border-radius: 3px;
+      }
+      nav .search-container button {
+        padding: 6px 10px;
+        background-color: #333;
+        color: white;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+      }
+      nav .search-container button:hover {
+        background-color: #555;
+      }
+      header {
+        background-color: #4caf50;
+        color: white;
+        text-align: center;
+        padding: 20px 0;
+      }
+      footer {
+        background-color: #4caf50;
+        color: white;
+        text-align: center;
+        padding: 10px 0;
+        margin-top: 20px;
+        font-size: 15px;
+      }
+      /* Ẩn các phần hiển thị ban đầu */
+      .hidden {
+        display: none;
+      }
+
+      /* Phần hiển thị chi tiết sách */
+      #book-detail {
+        margin: 20px auto;
+        padding: 20px;
+        max-width: 600px;
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        text-align: center;
+      }
+
+      #book-detail h2 {
+        font-size: 24px;
+        color: #333;
+        margin-bottom: 15px;
+      }
+
+      #book-detail img {
+        max-width: 100%;
+        height: auto;
+        margin: 10px 0;
+        border-radius: 8px;
+      }
+
+      #book-detail p {
+        font-size: 16px;
+        color: #555;
+        margin-bottom: 15px;
+      }
+
+      #book-detail button {
+        background-color: #4caf50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+      }
+
+      #book-detail button:hover {
+        background-color: #45a049;
+      }
+
+      /* Form mượn sách */
+      #borrow-form {
+        margin: 20px auto;
+        padding: 20px;
+        max-width: 600px;
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      #borrow-form h3 {
+        font-size: 20px;
+        color: #333;
+        margin-bottom: 15px;
+        text-align: center;
+      }
+
+      #borrow-form form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      #borrow-form label {
+        font-size: 14px;
+        color: #555;
+      }
+
+      #borrow-form input[type="text"],
+      #borrow-form input[type="date"] {
+        padding: 10px;
+        font-size: 14px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        width: 100%;
+      }
+
+      #borrow-form input[type="checkbox"] {
+        margin-right: 8px;
+      }
+
+      #borrow-form button[type="submit"] {
+        background-color: #4caf50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+      }
+
+      #borrow-form button[type="submit"]:hover {
+        background-color: #45a049;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        #book-detail,
+        #borrow-form {
+          padding: 15px;
+        }
+
+        #book-detail h2,
+        #borrow-form h3 {
+          font-size: 20px;
+        }
+
+        #book-detail p,
+        #borrow-form label {
+          font-size: 14px;
+        }
+
+        #book-detail button,
+        #borrow-form button {
+          font-size: 14px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="navbar">
+      <div class="logo">
+        <a href="index.html"> <img src="img/logo.jpg" alt="Logo" /></a>
+      </div>
+      <div class="menu">
+        <a href="doc-sach.html">Đọc sách</a>
+        <a href="muon-sach.html">Mượn sách</a>
+        <a href="tai-lieu-tham-khao.html">Tài liệu tham khảo</a>
+      </div>
+      <div class="right-section">
+        <div class="auth">
+          <a href="dang-nhap.html">Đăng nhập</a> hoặc
+          <a href="dang-ky.html">Đăng ký</a>
+        </div>
+      </div>
+    </div>
+    <header>
+      <nav>
+        <div class="search-container">
+          <input type="text" placeholder="Tìm kiếm sách..." id="search-input" />
+          <button
+            type="submit"
+            onclick="alert('Tìm kiếm: ' + document.getElementById('search-input').value)"
+          >
+            Tìm
+          </button>
+        </div>
+      </nav>
+      <h1>Thư Viện Ảo Trường THCS Nguyễn Trãi</h1>
+    </header>
+    <main>
+      <!-- Phần hiển thị chi tiết sách -->
+      <section id="book-detail" class="hidden">
+        <h2 id="book-title">Tên sách</h2>
+        <img id="book-image" src="" alt="Book image" />
+        <p id="book-info">Thông tin sách sẽ được hiển thị ở đây</p>
+        <button id="borrow-btn">Mượn sách</button>
+      </section>
+
+      <!-- Form mượn sách -->
+      <section id="borrow-form" class="hidden">
+        <h3>Nhập thông tin mượn sách</h3>
+        <form id="borrow-form-content">
+          <label for="name">Tên:</label>
+          <input type="text" id="name" required /><br />
+
+          <label for="class">Lớp:</label>
+          <input type="text" id="class" required /><br />
+
+          <label for="dob">Ngày mượn sách:</label>
+          <input type="date" id="dob" required /><br />
+
+          <label for="borrow-time">Ngày trả sách:</label>
+          <input type="date" id="borrow-time" required /><br />
+
+          <input type="checkbox" id="agreement" required />
+          <label for="agreement"
+            >Cam kết trả đúng hẹn và nguyên vẹn sách, nếu không thực hiện được
+            tôi sẽ đền bù số tiền in trên bìa sách.</label
+          ><br />
+
+          <button type="submit">Xác nhận mượn sách</button>
+        </form>
+      </section>
+      <script src="script.js"></script>
+    </main>
+    <footer>© 2024 THCS Nguyễn Trãi - Tất cả quyền được bảo lưu</footer>
+  </body>
+</html>

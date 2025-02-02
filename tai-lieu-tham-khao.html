@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tài Liệu Tham Khảo-Thư Viện Ảo</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+      }
+      .navbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: #1f1f1f;
+        padding: 10px 20px;
+        color: white;
+      }
+      .navbar .logo img {
+        height: 40px;
+      }
+      .navbar .menu {
+        display: flex;
+        gap: 20px;
+      }
+      .navbar .menu a {
+        color: white;
+        text-decoration: none;
+        font-size: 16px;
+        text-transform: uppercase;
+      }
+      .navbar .menu a:hover {
+        text-decoration: underline;
+      }
+      .navbar .right-section {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+      .navbar .right-section img {
+        height: 20px;
+        cursor: pointer;
+      }
+      .navbar .right-section .auth {
+        font-size: 14px;
+      }
+      .navbar .right-section .auth a {
+        color: white;
+        text-decoration: none;
+        margin-left: 5px;
+      }
+      .navbar .right-section .auth a:hover {
+        text-decoration: underline;
+      }
+      nav .search-container {
+        position: absolute;
+        right: 20px;
+      }
+      nav .search-container input {
+        padding: 5px;
+        font-size: 16px;
+        border: none;
+        border-radius: 3px;
+      }
+      nav .search-container button {
+        padding: 6px 10px;
+        background-color: #333;
+        color: white;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+      }
+      nav .search-container button:hover {
+        background-color: #555;
+      }
+      header {
+        background-color: #4caf50;
+        color: white;
+        text-align: center;
+        padding: 20px 0;
+      }
+      footer {
+        background-color: #4caf50;
+        color: white;
+        text-align: center;
+        padding: 10px 0;
+        margin-top: 20px;
+        font-size: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="navbar">
+      <div class="logo">
+        <a href="index.html"> <img src="img/logo.jpg" alt="Logo" /></a>
+      </div>
+      <div class="menu">
+        <a href="doc-sach.html">Đọc sách</a>
+        <a href="muon-sach.html">Mượn sách</a>
+        <a href="tai-lieu-tham-khao.html">Tài liệu tham khảo</a>
+      </div>
+      <div class="right-section">
+        <div class="auth">
+          <a href="dang-nhap.html">Đăng nhập</a> hoặc
+          <a href="dang-ky.html">Đăng ký</a>
+        </div>
+      </div>
+    </div>
+    <header>
+      <nav>
+        <div class="search-container">
+          <input type="text" placeholder="Tìm kiếm sách..." id="search-input" />
+          <button
+            type="submit"
+            onclick="alert('Tìm kiếm: ' + document.getElementById('search-input').value)"
+          >
+            Tìm
+          </button>
+        </div>
+      </nav>
+      <h1>Thư Viện Ảo Trường THCS Nguyễn Trãi</h1>
+    </header>
+    <main></main>
+    <footer>© 2024 THCS Nguyễn Trãi - Tất cả quyền được bảo lưu</footer>
+  </body>
+</html>
